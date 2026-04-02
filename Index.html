@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>IronForge – Weight Plates & Accessories</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--bg:#0d0d0d;--bg2:#161616;--bg3:#1f1f1f;--accent:#e63000;--accent2:#ff4d1a;--text:#f0f0f0;--muted:#888;--border:#2a2a2a}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(13,13,13,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 5%}
+  .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-size:1.4rem;font-weight:900;letter-spacing:-.5px}
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:2rem;font-size:.9rem;color:var(--muted)}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{background:var(--accent);color:#fff;padding:.5rem 1.25rem;border-radius:6px;font-weight:700;font-size:.9rem;transition:background .2s}
+  .nav-cta:hover{background:var(--accent2)}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;padding:0 5%;position:relative;overflow:hidden;background:radial-gradient(ellipse at 70% 50%, #2a0a00 0%, var(--bg) 60%)}
+  .hero::before{content:'';position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:600px;height:600px;border-radius:50%;border:2px solid rgba(230,48,0,.12);box-shadow:0 0 120px rgba(230,48,0,.08)}
+  .hero::after{content:'';position:absolute;right:60px;top:50%;transform:translateY(-50%);width:420px;height:420px;border-radius:50%;border:2px solid rgba(230,48,0,.18);box-shadow:0 0 80px rgba(230,48,0,.1)}
+  .hero-plate{position:absolute;right:8%;top:50%;transform:translateY(-50%);width:320px;height:320px;border-radius:50%;background:conic-gradient(from 0deg,#1a1a1a,#2a2a2a,#1a1a1a,#333,#1a1a1a);border:18px solid #222;box-shadow:0 0 60px rgba(230,48,0,.2),inset 0 0 40px rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center}
+  .hero-plate::before{content:'';width:80px;height:80px;border-radius:50%;background:#111;border:8px solid #2a2a2a;box-shadow:0 0 20px rgba(0,0,0,.8)}
+  .hero-content{max-width:600px;position:relative;z-index:2}
+  .hero-tag{display:inline-block;background:rgba(230,48,0,.15);border:1px solid rgba(230,48,0,.3);color:var(--accent);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.35rem .9rem;border-radius:4px;margin-bottom:1.5rem}
+  .hero h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:1.05;letter-spacing:-2px;margin-bottom:1.25rem}
+  .hero h1 span{color:var(--accent)}
+  .hero p{font-size:1.15rem;color:var(--muted);max-width:480px;margin-bottom:2.5rem}
+  .btn{display:inline-block;padding:.85rem 2rem;border-radius:8px;font-weight:800;font-size:1rem;cursor:pointer;transition:all .2s;border:none}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(230,48,0,.35)}
+  .btn-outline{background:transparent;color:var(--text);border:2px solid var(--border);margin-left:1rem}
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+  .hero-stats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+  .stat-num{display:block;font-size:1.8rem;font-weight:900;color:var(--accent)}
+  .stat-label{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+
+  /* SECTIONS */
+  section{padding:5rem 5%}
+  .section-inner{max-width:1200px;margin:0 auto}
+  .section-header{text-align:center;margin-bottom:3.5rem}
+  .section-tag{display:inline-block;color:var(--accent);font-size:.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:.75rem}
+  .section-header h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;letter-spacing:-1px}
+  .section-header p{color:var(--muted);margin-top:.75rem;font-size:1rem}
+
+  /* CATEGORIES */
+  .categories{background:var(--bg2)}
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+  .cat-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:2rem 1.5rem;text-align:center;transition:all .25s;cursor:pointer}
+  .cat-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 32px rgba(230,48,0,.15)}
+  .cat-icon{font-size:2.8rem;margin-bottom:1rem}
+  .cat-card h3{font-size:1rem;font-weight:700;margin-bottom:.4rem}
+  .cat-card p{font-size:.82rem;color:var(--muted)}
+
+  /* PRODUCTS */
+  .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.75rem}
+  .product-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .25s}
+  .product-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 32px rgba(230,48,0,.12)}
+  .product-img{width:100%;height:200px;object-fit:cover;background:var(--bg3);display:block}
+  .product-img-placeholder{width:100%;height:200px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:3rem}
+  .product-body{padding:1.25rem}
+  .product-cat{font-size:.72rem;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.4rem}
+  .product-name{font-size:1rem;font-weight:700;margin-bottom:.4rem}
+  .product-desc{font-size:.83rem;color:var(--muted);margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .product-footer{display:flex;align-items:center;justify-content:space-between}
+  .product-price{font-size:1.15rem;font-weight:900;color:var(--accent)}
+  .add-btn{background:var(--accent);color:#fff;border:none;padding:.45rem 1rem;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;transition:background .2s}
+  .add-btn:hover{background:var(--accent2)}
+  #products-loading{text-align:center;color:var(--muted);padding:3rem 0;grid-column:1/-1}
+
+  /* WHY US */
+  .why{background:var(--bg2)}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem}
+  .why-card{padding:2rem;background:var(--bg3);border:1px solid var(--border);border-radius:12px}
+  .why-icon{font-size:2rem;margin-bottom:1rem}
+  .why-card h3{font-weight:800;margin-bottom:.5rem}
+  .why-card p{font-size:.88rem;color:var(--muted)}
+
+  /* TESTIMONIALS */
+  .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.75rem}
+  .testi-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.75rem}
+  .stars{color:var(--accent);font-size:1rem;margin-bottom:.75rem}
+  .testi-card p{font-size:.9rem;color:var(--muted);font-style:italic;margin-bottom:1.25rem}
+  .testi-author{font-weight:700;font-size:.88rem}
+  .testi-role{font-size:.78rem;color:var(--muted)}
+
+  /* CTA BANNER */
+  .cta-banner{background:linear-gradient(135deg,#1a0500,var(--bg3));border:1px solid rgba(230,48,0,.25);border-radius:16px;padding:4rem 3rem;text-align:center;position:relative;overflow:hidden}
+  .cta-banner::before{content:'⬤';position:absolute;font-size:400px;opacity:.03;right:-80px;top:-100px;color:var(--accent);line-height:1}
+  .cta-banner h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:900;margin-bottom:1rem}
+  .cta-banner p{color:var(--muted);margin-bottom:2rem;font-size:1rem}
+
+  /* FOOTER */
+  footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 5% 2rem}
+  .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
+  .footer-brand .logo{font-size:1.3rem;margin-bottom:.75rem;display:block}
+  .footer-brand p{font-size:.85rem;color:var(--muted);max-width:260px}
+  footer h4{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1rem;color:var(--text)}
+  footer ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+  footer ul a{font-size:.85rem;color:var(--muted);transition:color .2s}
+  footer ul a:hover{color:var(--accent)}
+  .footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--muted)}
+
+  @media(max-width:900px){.hero-plate{display:none}.footer-inner{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.nav-links{display:none}.footer-inner{grid-template-columns:1fr}.btn-outline{display:none}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">IRON<span>FORGE</span></div>
+    <div class="nav-links">
+      <a href="#categories">Categories</a>
+      <a href="#products">Shop</a>
+      <a href="#why">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#products" class="nav-cta">Shop Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">⚡ Premium Fitness Equipment</div>
+    <h1>Built for <span>Serious</span> Lifters.</h1>
+    <p>Top-quality weight plates, barbells, dumbbells, and accessories — everything you need to build your ultimate home or commercial gym.</p>
+    <div>
+      <a href="#products" class="btn btn-primary">Shop All Products</a>
+      <a href="#why" class="btn btn-outline">Why Choose Us</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-num">500+</span><span class="stat-label">Products</span></div>
+      <div><span class="stat-num">12K+</span><span class="stat-label">Happy Customers</span></div>
+      <div><span class="stat-num">5★</span><span class="stat-label">Avg. Rating</span></div>
+    </div>
+  </div>
+  <div class="hero-plate"></div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Browse</div>
+      <h2>Shop by Category</h2>
+      <p>Everything you need, all in one place.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card"><div class="cat-icon">🏋️</div><h3>Weight Plates</h3><p>Olympic, standard & bumper plates</p></div>
+      <div class="cat-card"><div class="cat-icon">🔩</div><h3>Barbells</h3><p>Power, curl & specialty bars</p></div>
+      <div class="cat-card"><div class="cat-icon">💪</div><h3>Dumbbells</h3><p>Fixed & adjustable sets</p></div>
+      <div class="cat-card"><div class="cat-icon">🔄</div><h3>Resistance Bands</h3><p>All resistance levels</p></div>
+      <div class="cat-card"><div class="cat-icon">🧰</div><h3>Accessories</h3><p>Collars, belts, straps & more</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Store</div>
+      <h2>All Products</h2>
+      <p>Loaded directly from our inventory.</p>
+    </div>
+    <div class="products-grid" id="products-grid">
+      <div id="products-loading">Loading products…</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Why IronForge</div>
+      <h2>Quality You Can Feel</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon">🏆</div><h3>Premium Materials</h3><p>All our products are made from high-grade steel and rubber — built to last through thousands of reps.</p></div>
+      <div class="why-card"><div class="why-icon">🚚</div><h3>Fast Shipping</h3><p>Orders dispatched within 24 hours. Secure packaging to make sure your equipment arrives in perfect condition.</p></div>
+      <div class="why-card"><div class="why-icon">💰</div><h3>Competitive Prices</h3><p>We cut out the middleman so you get professional-grade equipment at prices that make sense.</p></div>
+      <div class="why-card"><div class="why-icon">🛡️</div><h3>Satisfaction Guarantee</h3><p>Not happy? We offer hassle-free returns and a 2-year warranty on all our products.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Reviews</div>
+      <h2>What Our Customers Say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="stars">★★★★★</div><p>"Best weight plates I've ever bought. The quality is incredible and they arrived super fast. My home gym is finally complete!"</p><div class="testi-author">Marcus T.</div><div class="testi-role">Powerlifter, 6 years</div></div>
+      <div class="testi-card"><div class="stars">★★★★★</div><p>"Amazing prices for such high quality gear. Ordered a full dumbbell set and couldn't be happier. Will definitely order again."</p><div class="testi-author">Sofia R.</div><div class="testi-role">Personal Trainer</div></div>
+      <div class="testi-card"><div class="stars">★★★★★</div><p>"The bumper plates are exactly what I needed for my Olympic lifting. Solid, well-balanced and great grip. Highly recommend!"</p><div class="testi-author">James K.</div><div class="testi-role">CrossFit Athlete</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section style="padding:3rem 5%">
+  <div class="section-inner">
+    <div class="cta-banner" id="contact">
+      <h2>Ready to Build Your Dream Gym?</h2>
+      <p>Browse our full catalog and get free shipping on orders over $100.</p>
+      <a href="#products" class="btn btn-primary">Shop All Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo">IRON<span style="color:var(--accent)">FORGE</span></span>
+      <p>Premium weight plates and fitness accessories for serious athletes and beginners alike.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">Weight Plates</a></li>
+        <li><a href="#">Barbells</a></li>
+        <li><a href="#">Dumbbells</a></li>
+        <li><a href="#">Accessories</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">hello@ironforge.com</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 IronForge. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Use</span>
+  </div>
+</footer>
+
+<script>
+  // ── Load products from products.json ──────────────────────────────
+  async function loadProducts() {
+    const grid = document.getElementById('products-grid');
+    try {
+      const res = await fetch('products.json');
+      if (!res.ok) throw new Error('Failed to load products.json');
+      const products = await res.json();
+      renderProducts(products, grid);
+    } catch (e) {
+      // Fallback: show sample data when running locally without a server
+      renderProducts(SAMPLE_PRODUCTS, grid);
+    }
+  }
+
+  function renderProducts(products, grid) {
+    if (!products.length) {
+      grid.innerHTML = '<p style="color:var(--muted);grid-column:1/-1;text-align:center">No products found.</p>';
+      return;
+    }
+    grid.innerHTML = products.map(p => `
+      <div class="product-card">
+        ${p.image
+          ? `<img class="product-img" src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+          : ''}
+        <div class="product-img-placeholder" ${p.image ? 'style="display:none"' : ''}>🏋️</div>
+        <div class="product-body">
+          <div class="product-cat">${p.category || 'Equipment'}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-desc">${p.description || ''}</div>
+          <div class="product-footer">
+            <span class="product-price">$${parseFloat(p.price).toFixed(2)}</span>
+            <button class="add-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+
+  // Sample data — displayed only when products.json is unavailable
+  const SAMPLE_PRODUCTS = [
+    {name:'Olympic Weight Plate 20kg',category:'Weight Plates',price:'49.99',description:'Cast iron Olympic plate with precision balance. Fits all 2" barbells.',image:''},
+    {name:'Olympic Weight Plate 10kg',category:'Weight Plates',price:'27.99',description:'Durable cast iron construction with smooth finish.',image:''},
+    {name:'Bumper Plate Set 20kg',category:'Weight Plates',price:'89.99',description:'High-density rubber bumper plates. Ideal for Olympic lifting.',image:''},
+    {name:'Standard Barbell 20kg',category:'Barbells',price:'119.99',description:'7ft Olympic power bar with knurled grip and 220kg load capacity.',image:''},
+    {name:'Adjustable Dumbbell Set',category:'Dumbbells',price:'149.99',description:'2–24kg adjustable set. Replaces 8 pairs of dumbbells.',image:''},
+    {name:'Resistance Band Set',category:'Accessories',price:'24.99',description:'5 resistance levels. Great for warm-up, rehab, and assisted training.',image:''},
+    {name:'Olympic Collars (pair)',category:'Accessories',price:'14.99',description:'Spring-lock collars for 2" Olympic bars. Secure and quick to attach.',image:''},
+    {name:'Lifting Belt',category:'Accessories',price:'39.99',description:'10mm genuine leather belt with double prong buckle. Sizes S–XXL.',image:''},
+  ];
+
+  loadProducts();
+</script>
+</body>
+</html>

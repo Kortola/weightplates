@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Olympic Weight Plate 20kg",
+    "category": "Weight Plates",
+    "price": "49.99",
+    "image": "https://your-image-url.com/plate-20kg.jpg",
+    "description": "Cast iron Olympic plate with precision balance. Fits all 2\" barbells."
+  },
+  {
+    "name": "Olympic Weight Plate 10kg",
+    "category": "Weight Plates",
+    "price": "27.99",
+    "image": "https://your-image-url.com/plate-10kg.jpg",
+    "description": "Durable cast iron construction with smooth finish."
+  },
+  {
+    "name": "Bumper Plate Set 20kg",
+    "category": "Weight Plates",
+    "price": "89.99",
+    "image": "https://your-image-url.com/bumper-set.jpg",
+    "description": "High-density rubber bumper plates ideal for Olympic lifting."
+  },
+  {
+    "name": "Standard Barbell 20kg",
+    "category": "Barbells",
+    "price": "119.99",
+    "image": "https://your-image-url.com/barbell.jpg",
+    "description": "7ft Olympic power bar with knurled grip and 220kg load capacity."
+  }
+]
