@@ -270,10 +270,51 @@
 <!-- CTA BANNER -->
 <section style="padding:3rem 5%">
   <div class="section-inner">
-    <div class="cta-banner" id="contact">
+    <div class="cta-banner">
       <h2>Join Batch 001 Reservation List</h2>
       <a href="mailto:info@deadloadstrength.com" class="btn btn-primary" style="margin-top:1rem">info@deadloadstrength.com</a>
     </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:5rem 5%;background:var(--bg2)">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Get In Touch</div>
+      <h2>Contact Dead Load Strength</h2>
+      <p>Fill out the form below and we'll respond directly to your inbox.</p>
+    </div>
+    <form action="https://api.web3forms.com/submit" method="POST" style="max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:1.25rem">
+      <input type="hidden" name="access_key" value="dd95a964-c4ac-4b49-b08a-9c3ebd871e56">
+      <input type="hidden" name="subject" value="New Inquiry from DeadloadStrength.com">
+      <input type="checkbox" name="botcheck" style="display:none">
+      <div>
+        <label for="name" style="display:block;margin-bottom:.5rem;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted)">Your Name</label>
+        <input type="text" id="name" name="name" required placeholder="Dave Smith"
+          style="width:100%;padding:.85rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.95rem;outline:none;transition:border .2s"
+          onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div>
+        <label for="email" style="display:block;margin-bottom:.5rem;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted)">Your Email</label>
+        <input type="email" id="email" name="email" required placeholder="dave@example.com"
+          style="width:100%;padding:.85rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.95rem;outline:none;transition:border .2s"
+          onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div>
+        <label for="phone" style="display:block;margin-bottom:.5rem;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted)">Phone Number <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="(312) 555-0199"
+          style="width:100%;padding:.85rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.95rem;outline:none;transition:border .2s"
+          onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div>
+        <label for="message" style="display:block;margin-bottom:.5rem;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted)">Message</label>
+        <textarea id="message" name="message" rows="5" required placeholder="Tell us about your gym or equipment needs..."
+          style="width:100%;padding:.85rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.95rem;outline:none;resize:vertical;transition:border .2s;font-family:inherit"
+          onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;font-size:1rem;letter-spacing:1px">Send Message</button>
+    </form>
   </div>
 </section>
 
