@@ -285,7 +285,7 @@
       <h2>Contact Dead Load Strength</h2>
       <p>Fill out the form below and we'll respond directly to your inbox.</p>
     </div>
-    <form action="https://api.web3forms.com/submit" method="POST" style="max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:1.25rem">
+          <form id="contact-form" style="max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:1.25rem">
       <input type="hidden" name="access_key" value="dd95a964-c4ac-4b49-b08a-9c3ebd871e56">
       <input type="hidden" name="subject" value="New Inquiry from DeadloadStrength.com">
       <input type="checkbox" name="botcheck" style="display:none">
@@ -314,7 +314,43 @@
           onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></textarea>
       </div>
       <button type="submit" class="btn btn-primary" style="width:100%;font-size:1rem;letter-spacing:1px">Send Message</button>
+      <div id="contact-result" style="margin-top:.5rem;font-weight:700;text-align:center;font-size:.95rem"></div>
     </form>
+
+    <script>
+      const contactForm = document.getElementById('contact-form');
+      const contactResult = document.getElementById('contact-result');
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        const json = JSON.stringify(Object.fromEntries(formData));
+        contactResult.style.color = 'var(--muted)';
+        contactResult.innerHTML = 'Sending your message…';
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json','Accept':'application/json'},
+          body: json
+        })
+        .then(async res => {
+          const data = await res.json();
+          if (res.status === 200) {
+            contactResult.style.color = '#28a745';
+            contactResult.innerHTML = 'Thank you! Your message has been sent.';
+          } else {
+            contactResult.style.color = 'var(--accent)';
+            contactResult.innerHTML = data.message;
+          }
+        })
+        .catch(() => {
+          contactResult.style.color = 'var(--accent)';
+          contactResult.innerHTML = 'Something went wrong. Please try again.';
+        })
+        .finally(() => {
+          contactForm.reset();
+          setTimeout(() => contactResult.innerHTML = '', 5000);
+        });
+      });
+    </script>
   </div>
 </section>
 
